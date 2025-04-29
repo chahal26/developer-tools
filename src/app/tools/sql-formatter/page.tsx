@@ -27,10 +27,14 @@ export default function SQLFormatter() {
       setFormattedSQL(formatted);
       setMinifiedSQL(minified);
       setError('');
-    } catch (err) {
-      setFormattedSQL('');
-      setMinifiedSQL('');
-      setError(err.message || 'Invalid SQL');
+    } catch (err: unknown) {
+        setFormattedSQL('');
+        setMinifiedSQL('');
+        if(err instanceof Error){
+            setError(err.message || 'Invalid SQL');
+        }else{
+            setError('Invalid SQL');
+        }
     }
   }, [sqlInput]);
 

@@ -18,7 +18,7 @@ export default function ApiTester() {
     let parsedHeaders = {};
     try {
       parsedHeaders = JSON.parse(headers);
-    } catch (err) {
+    } catch {
       setError("Invalid JSON format in headers.");
       return;
     }
@@ -36,7 +36,7 @@ export default function ApiTester() {
       const res = await fetch(url, options);
       const data = await res.json();
       setResponse(data);
-    } catch (err) {
+    } catch {
       setError("An error occurred while making the request.");
     }
   };

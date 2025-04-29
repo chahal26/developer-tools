@@ -49,7 +49,7 @@ export default function RegexTester() {
       setMatches(matchArray);
     } catch (err) {
       setIsValid(false);
-      setError(err.message);
+      setError(err instanceof Error ? err.message : 'An error occurred');
       setMatches([]);
     }
   }, [regex, testString, flags]);

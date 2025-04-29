@@ -92,14 +92,14 @@ export default function ColorConverter() {
       setRgb(rgbVal);
       setHsl(hslVal);
     }
-  }, [hex]);
+  }, [hex, lastUpdated]);
 
   useEffect(() => {
     if (lastUpdated === 'rgb') {
       setHex(rgbToHex(rgb.r, rgb.g, rgb.b));
       setHsl(rgbToHsl(rgb.r, rgb.g, rgb.b));
     }
-  }, [rgb]);
+  }, [lastUpdated, rgb]);
 
   useEffect(() => {
     if (lastUpdated === 'hsl') {
@@ -107,7 +107,7 @@ export default function ColorConverter() {
       setRgb(rgbVal);
       setHex(rgbToHex(rgbVal.r, rgbVal.g, rgbVal.b));
     }
-  }, [hsl]);
+  }, [hsl, lastUpdated]);
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
