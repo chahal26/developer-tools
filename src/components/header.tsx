@@ -35,40 +35,35 @@ export default function Header() {
             >
               Tools
             </Link>
-            <Link
-              href="/blog"
+            <span
               className="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-blue-500 transition-colors"
             >
               Blog
-            </Link>
-            <Link
-              href="/pricing"
+            </span>
+            <span
               className="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-blue-500 transition-colors"
             >
               Pricing
-            </Link>
-            <Link
-              href="/contact"
+            </span>
+            <span
               className="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-blue-500 transition-colors"
             >
               Contact
-            </Link>
+            </span>
           </nav>
 
           {/* Auth Buttons */}
           <div className="mt-4 md:mt-0 flex items-center space-x-2">
-            <Link
-              href="/login"
+            <span
               className="px-4 py-2 rounded-md text-sm font-medium text-blue-600 bg-white hover:bg-gray-100 transition-colors"
             >
               Log In
-            </Link>
-            <Link
-              href="/signup"
+            </span>
+            <span
               className="px-4 py-2 rounded-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 transition-colors"
             >
               Sign Up
-            </Link>
+            </span>
           </div>
         </div>
       </div>
