@@ -58,7 +58,7 @@ export default function RegexTester() {
   const renderHighlightedText = () => {
     if (!isValid) return testString;
 
-    let result = [];
+    const result = [];
     let lastIndex = 0;
 
     matches.forEach((match, i) => {

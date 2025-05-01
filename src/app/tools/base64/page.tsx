@@ -23,12 +23,12 @@ export default function Base64Tool() {
     try {
       setIsProcessing(true);
       if (operation === 'encode') {
-        setOutputText(btoa(encodeURIComponent(inputText).replace(/%([0-9A-F]{2})/g, (match, p1) => String.fromCharCode('0x' + p1))));
+        setOutputText(btoa(encodeURIComponent(inputText).replace(/%([0-9A-F]{2})/g, (match, p1) => String.fromCharCode(parseInt(p1, 16)))));
       } else {
         setOutputText(decodeURIComponent(Array.prototype.map.call(atob(inputText), (c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join('')));
       }
       setIsValid(true);
-    } catch (error) {
+    } catch {
       setIsValid(false);
       setOutputText('Invalid Base64 string for decoding');
     } finally {
@@ -47,14 +47,19 @@ export default function Base64Tool() {
 
     const reader = new FileReader();
     reader.onload = (event) => {
-      const arrayBuffer = event.target.result;
-      const bytes = new Uint8Array(arrayBuffer);
-      let binary = '';
-      bytes.forEach((byte) => {
-        binary += String.fromCharCode(byte);
-      });
-      setInputText(btoa(binary));
-      setOperation('encode');
+      const result = event.target?.result;
+    
+      if (result instanceof ArrayBuffer) {
+        const bytes = new Uint8Array(result);
+        let binary = '';
+        bytes.forEach((byte) => {
+          binary += String.fromCharCode(byte);
+        });
+        setInputText(btoa(binary));
+        setOperation('encode');
+      } else {
+        console.error('Expected ArrayBuffer but got:', typeof result);
+      }
     };
     reader.readAsArrayBuffer(file);
   };
@@ -250,7 +255,7 @@ export default function Base64Tool() {
             <h3 className="font-medium mb-2 text-gray-800">What is Base64?</h3>
             <p className="text-gray-600">
               Base64 is a binary-to-text encoding scheme that represents binary data in an ASCII string format.
-              It's commonly used to encode data that needs to be stored and transferred over media designed to deal with text.
+              It is commonly used to encode data that needs to be stored and transferred over media designed to deal with text.
             </p>
           </div>
           <div>

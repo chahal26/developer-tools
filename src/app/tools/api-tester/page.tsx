@@ -7,7 +7,7 @@ export default function ApiTester() {
   const [method, setMethod] = useState("GET");
   const [requestBody, setRequestBody] = useState("");
   const [headers, setHeaders] = useState<string>("{}");
-  const [response, setResponse] = useState<any>(null);
+  const [response, setResponse] = useState<unknown>(null);
   const [error, setError] = useState<string>("");
 
   const handleRequest = async () => {
